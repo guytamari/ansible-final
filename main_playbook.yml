@@ -8,4 +8,6 @@
   roles:
     - update_hostname
     - install_service
+    #- install_docker
+    #- service_as_container
     - create_crontab
