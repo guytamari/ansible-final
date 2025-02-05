@@ -1,0 +1,25 @@
+- name: update yum repo
+  command: yum update -y
+- name: install mysql
+  shell: |
+     sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm |
+     sudo dnf install mysql80-community-release-el9-1.noarch.rpm -y |
+     sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+  when: "'{{ service }}' == 'mysql'"
+- name: install nginx
+  command: yum install -y nginx-"{{ version }}"
+  when: "'{{ service }}' == 'nginx'"
+
+- name: start and enable mysql
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+  when: "'{{ service }}' == 'mysql'"
+
+- name: start and enable nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+  when: "'{{ service }}' == 'nginx'"    

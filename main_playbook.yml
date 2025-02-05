@@ -1,0 +1,11 @@
+- name: main playbook
+  hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    - ansible_user: ec2-user
+    - ansible_ssh_private_key_file: ~/GuyTamari-KeyPair.pem
+  roles:
+    - update_hostname
+    - install_service
+    - create_crontab

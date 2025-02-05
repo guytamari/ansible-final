@@ -1,0 +1,16 @@
+- name: install cron
+  package:
+    name: cronie
+    state: present
+- name: start and enable cron
+  service:
+    name: crond
+    state: started
+    enabled: yes
+- name: create a cronjob that restarts
+  cron:
+        name: " {{ Restart_time }}"
+        minute: "{{ Restart_time.split(' ')[2].split(':')[1] }}"
+        hour: "{{ Restart_time.split(' ')[2].split(':')[0] }}"
+        weekday: "{{ Restart_time.split(' ')[0].strip() }}"
+        job: "/sbin/shutdown -r now"

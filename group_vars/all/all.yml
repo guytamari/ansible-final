@@ -1,0 +1,8 @@
+key_name:
+region: us-east-1
+vpc_id:
+instance_name: "{{ hostvars[inventory_hostname]['tags'].get('Name','default-host') }}"
+service:  "{{ hostvars[inventory_hostname]['tags'].get('Service','default-host') }}"
+version: "{{ hostvars[inventory_hostname]['tags'].get('Version','latest') }}"
+Restart_time: "{{ hostvars[inventory_hostname]['tags'].get('Restart','default-host') }}"
+
