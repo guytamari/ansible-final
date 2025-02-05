@@ -7,10 +7,6 @@ compose:
   ansible_host: public_ip_address
   ansbile_user: ec2-user
 filters:
-  ## All instances with their `Environment` tag set to `dev`
-  # tag:Environment: dev
-
-  # All dev and QA hosts
   tag:Owner: "guytamari"
   tag:Managed: "True"
 
